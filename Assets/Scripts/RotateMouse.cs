@@ -16,22 +16,26 @@ public class RotateMouse : MonoBehaviour
 
 	void Start()
 	{
+		//Начальное положение камеры
 		limit = Mathf.Abs(limit);
 		if (limit > 90) limit = 90;
-		offset = new Vector3(offset.x, offset.y, -Mathf.Abs(zoomMax) );
+		offset = new Vector3(offset.x, offset.y, -Mathf.Abs(zoomMax));
 		transform.position = target.position + offset;
 	}
 
 	void Update()
 	{
+		//Увелич\уменьш через колесико мыши
 		if (Input.GetAxis("Mouse ScrollWheel") > 0) offset.z += zoom;
 		else if (Input.GetAxis("Mouse ScrollWheel") < 0) offset.z -= zoom;
 		offset.z = Mathf.Clamp(offset.z, -Mathf.Abs(zoomMax), -Mathf.Abs(zoomMin));
 
+		//При нажатии на ПКМ можно вращать камеру вокуруг сцены
         if (Input.GetMouseButton(1))
         {
 			Y = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
         }
+
 		transform.localEulerAngles = new Vector3(X, Y, Z);
 		transform.position = transform.localRotation * offset + target.position;
 	}

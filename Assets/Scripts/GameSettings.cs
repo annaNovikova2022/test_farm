@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameSettings : MonoBehaviour
 {
     public AudioSource Audio;
-    public Text TextButton;
+    public Text TextButton; //Текст кнопки для включения и отключения музыки
 
     public GameObject MenuWindow;
     
@@ -14,14 +14,13 @@ public class GameSettings : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
         
     }
     
-    public void OpenMenu()
+    //Открыть или закрыть меню настроек
+    public void OpenMenu() 
     {
         MenuWindow.SetActive(true);
     }
@@ -30,6 +29,7 @@ public class GameSettings : MonoBehaviour
         MenuWindow.SetActive(false);
     }
 
+    //Включение и отключение музыки
     public void AudioMode()
     {
 
