@@ -19,37 +19,25 @@ public class SeedShopMeneger : MonoBehaviour
     {
         for (int i = 0; i < numberOfProduct; i++)
         {
+            products[i].GetComponent<Product>().id = id[i];
             products[i].SetActive(true);
         }
-
-        Refresh();
     }
 
-    
+
     void Update()
     {
-        
+
     }
 
     public void ShopMode()
     {
-        if(ShopWindow.active == false)
+        if (ShopWindow.active == false)
         {
             ShopWindow.SetActive(true);
         }
         else ShopWindow.SetActive(false);
-        
+
     }
 
-
-    public void Refresh()
-    {
-
-        for (int i = 0; i < numberOfProduct; i++)
-        {
-           products[i].GetComponent<Product>().id = id[i];
-           products[i].SetActive(true);
-        }
-        
-    }
 }

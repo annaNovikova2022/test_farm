@@ -9,44 +9,36 @@ public class ItemShopMeneger : MonoBehaviour
     public int[] id;
     public string[] itemName;
     public int[] price;
-    public int numberOfProduct;
+    public int[] increase;
+    public int[] coinsTime;
+    public int numberOfItem;
 
     public GameObject[] item;
+    public GameObject[] objects;
     void Start()
     {
-        for (int i = 0; i < numberOfProduct; i++)
+        for (int i = 0; i < numberOfItem; i++)
         {
+            item[i].GetComponent<Item>().id = id[i];
+            objects[i].GetComponent<ItemBonus>().coinsTime = coinsTime[i];
             item[i].SetActive(true);
         }
-
-        Refresh();
     }
 
-    
+
     void Update()
     {
-        
+
     }
 
     public void ShopMode()
     {
-        if(ShopWindow.active == false)
+        if (ShopWindow.active == false)
         {
             ShopWindow.SetActive(true);
         }
         else ShopWindow.SetActive(false);
-        
-    }
 
-
-    public void Refresh()
-    {
-
-        for (int i = 0; i < numberOfProduct; i++)
-        {
-            item[i].GetComponent<Item>().id = id[i];
-            item[i].SetActive(true);
-        }
-        
     }
 }
+

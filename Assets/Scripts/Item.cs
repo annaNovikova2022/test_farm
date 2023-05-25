@@ -16,15 +16,13 @@ public class Item : MonoBehaviour
 
     public Text nameText, priceText;
 
-    public static bool placeSeeds;
-    public static int whichSeed;
 
 
 
     
     void Start()
     {
-        shop = GameObject.Find("ShopSeed");
+        shop = GameObject.Find("ShopItem");
 
         CoinsSystem = GameObject.Find("Coins System");
     }
@@ -32,8 +30,8 @@ public class Item : MonoBehaviour
     
     void Update()
     {
-        nameText.text = "" + itemName;
-        priceText.text = price + " $";
+        nameText.text = itemName.ToString();
+        priceText.text = price.ToString();
 
         itemName = shop.GetComponent<ItemShopMeneger>().itemName[id];
         price = shop.GetComponent<ItemShopMeneger>().price[id];
@@ -44,33 +42,13 @@ public class Item : MonoBehaviour
         
         if (CoinsSystem.GetComponent<CoinsSystem>().coin >= price)
         {
-            if (this.GetComponent<Graphic>().color == Color.green)
-                    {
-                        placeSeeds = true;
-                        whichSeed = id;
-                        this.GetComponent<Graphic>().color = Color.white;
-                        this.gameObject.tag = "Untagged";
-                        CoinsSystem.GetComponentInChildren<CoinsSystem>().coin += price;
-
-            }
-            else
-                    {
-                        findOtherSell();
-                        this.GetComponent<Graphic>().color = Color.green;
-                        this.gameObject.tag = "sell";
-                        CoinsSystem.GetComponentInChildren<CoinsSystem>().coin -= price;
-            }
+            this.GetComponent<Graphic>().color = Color.gray;
+            shop.GetComponent<ItemShopMeneger>().objects[id].SetActive(true);
+            shop.GetComponent<ItemShopMeneger>().objects[id].GetComponent<ItemBonus>().doTick = true;
+            CoinsSystem.GetComponentInChildren<CoinsSystem>().coin -= price;
+            CoinsSystem.GetComponent<CoinsSystem>().coinMAX += shop.GetComponent<ItemShopMeneger>().increase[id];
         }
 
     }
-    private void findOtherSell()
-    {
-        GameObject otherObject = GameObject.FindGameObjectWithTag("sell");
-        if (otherObject != null)
-        {
-            otherObject.GetComponent<Graphic>().color = Color.white;
-            otherObject.gameObject.tag = "Untagged";
-            CoinsSystem.GetComponentInChildren<CoinsSystem>().coin += otherObject.GetComponent<Product>().price;
-        }
-    }
+
 }

@@ -39,7 +39,7 @@ public class Product : MonoBehaviour
     
     void Update()
     {
-        nameText.text = "" + productName;
+        nameText.text = productName.ToString();
         priceText.text = price.ToString();
 
         productName = shop.GetComponent<SeedShopMeneger>().productName[id];
