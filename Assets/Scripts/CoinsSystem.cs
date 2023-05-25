@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class CoinsSystem : MonoBehaviour
 {
     public int coin;
+    public int coinMAX = 10;
+
+
 
     public Text coinText;
     // Start is called before the first frame update
@@ -17,6 +20,11 @@ public class CoinsSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        coinText.text = coin + " $";
+        if (coin > coinMAX)
+        {
+            coin = coinMAX;
+        }
+        coinText.text = coin + " \\ " +coinMAX;
+
     }
 }

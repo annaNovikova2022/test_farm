@@ -3,29 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Product : MonoBehaviour
+public class Item : MonoBehaviour
 {
     public GameObject shop;
 
     public GameObject CoinsSystem;
 
-    public GameObject seed;
-    public GameObject growPlant;
 
     public int id;
-    public string productName;
+    public string itemName;
     public int price;
-    public int sell;
 
     public Text nameText, priceText;
 
     public static bool placeSeeds;
     public static int whichSeed;
-    public static int howMuchSell;
 
-
-
-    public static int currentProduct;
 
 
     
@@ -39,14 +32,11 @@ public class Product : MonoBehaviour
     
     void Update()
     {
-        nameText.text = "" + productName;
-        priceText.text = price.ToString();
+        nameText.text = "" + itemName;
+        priceText.text = price + " $";
 
-        productName = shop.GetComponent<SeedShopMeneger>().productName[id];
-        price = shop.GetComponent<SeedShopMeneger>().price[id];
-        seed = shop.GetComponent<SeedShopMeneger>().seed[id];
-        sell = shop.GetComponent<SeedShopMeneger>().sell[id];
-        growPlant = shop.GetComponent<SeedShopMeneger>().growPlant[id];
+        itemName = shop.GetComponent<ItemShopMeneger>().itemName[id];
+        price = shop.GetComponent<ItemShopMeneger>().price[id];
     }
 
     public void Buy()
@@ -58,13 +48,10 @@ public class Product : MonoBehaviour
                     {
                         placeSeeds = true;
                         whichSeed = id;
-                        howMuchSell = sell;
                         this.GetComponent<Graphic>().color = Color.white;
                         this.gameObject.tag = "Untagged";
                         CoinsSystem.GetComponentInChildren<CoinsSystem>().coin += price;
 
-                        currentProduct = price;
-                        
             }
             else
                     {

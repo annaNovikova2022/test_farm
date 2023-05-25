@@ -9,6 +9,7 @@ TagManager:
   - Field
   - Seed
   - Grow up
+  - item
   layers:
   - Default
   - TransparentFX

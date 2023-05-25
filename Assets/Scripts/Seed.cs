@@ -5,14 +5,13 @@ using UnityEngine;
 public class Seed : MonoBehaviour
 {
     public int id;
+    public int sell;
 
     public GameObject plantGrow;
 
 
     void Start()
     {
-        id = Product.whichSeed;
-
         StartCoroutine(Wait());
     }
 
@@ -23,10 +22,11 @@ public class Seed : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
 
         GameObject newPlant = Instantiate(plantGrow, transform.position, transform.rotation);
         newPlant.GetComponent<Plant>().id = id;
+        newPlant.GetComponent<Plant>().sell = sell;
         Destroy(this.gameObject);
     }
 }

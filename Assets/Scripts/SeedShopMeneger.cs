@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopMeneger : MonoBehaviour
+public class SeedShopMeneger : MonoBehaviour
 {
     public GameObject ShopWindow;
 
     public int[] id;
     public string[] productName;
     public int[] price;
-
+    public int[] sell;
     public int numberOfProduct;
 
     public GameObject[] products;
+    public GameObject[] seed;
+    public GameObject[] growPlant;
     void Start()
     {
         for (int i = 0; i < numberOfProduct; i++)
         {
-            products[i].SetActive(false);
+            products[i].SetActive(true);
         }
 
         Refresh();
@@ -42,15 +44,10 @@ public class ShopMeneger : MonoBehaviour
 
     public void Refresh()
     {
-        for (int i = 0; i < numberOfProduct; i++)
-        {
-            products[i].SetActive(false);
-        }
 
-        
         for (int i = 0; i < numberOfProduct; i++)
         {
-           products[i].GetComponent<Plant>().id = id[i];
+           products[i].GetComponent<Product>().id = id[i];
            products[i].SetActive(true);
         }
         
