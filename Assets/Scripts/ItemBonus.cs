@@ -7,6 +7,7 @@ public class ItemBonus : MonoBehaviour
     public int id;
     public int coinsTime;
     public bool doTick = false;
+    public float waitTime = 10f;
 
     public GameObject CoinsSystem;
 
@@ -27,7 +28,7 @@ public class ItemBonus : MonoBehaviour
     {
         while (doTick)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(waitTime);
             CoinsSystem.GetComponentInChildren<CoinsSystem>().coin += coinsTime;
         }
     }
